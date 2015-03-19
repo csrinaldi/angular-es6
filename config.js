@@ -2,7 +2,7 @@ System.config({
   "baseURL": "/",
   "paths": {
     "*": "*.js",
-    "angular-es6/*" : "*.js",
+    "angular-es6/*": "*.js",
     "github:*": "jspm_packages/github/*.js",
     "npm:*": "jspm_packages/npm/*.js"
   }

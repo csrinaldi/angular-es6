@@ -1,9 +1,9 @@
-//import coreTpl from './core.tpl.html!text';
-//import headerTpl from 'core/header.tpl.html!text';
-//import footerTpl from 'core/footer.tpl.html!text';
+import tpl from './core.tpl.html!text';
+import headerTpl from './header.tpl.html!text';
+import footerTpl from './footer.tpl.html!text';
 
 
-//import user from '../users/config';
+import user from '../users/config';
 
 
 /**

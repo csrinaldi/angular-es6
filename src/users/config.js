@@ -1,5 +1,5 @@
 'use strict';
-import loginTpl from 'users/login.tpl.html!text';
+import loginTpl from './login.tpl.html!text';
 
 class UserRouterConfig {
 

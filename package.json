@@ -9,7 +9,10 @@
       "angular-material": "github:angular/bower-material@^0.8.3",
       "angular-ui/ui-router": "github:angular-ui/ui-router@^0.2.13",
       "jquery": "github:components/jquery@^2.1.3",
-      "systemjs/plugin-text": "github:systemjs/plugin-text@^0.0.2"
+      "text": "github:systemjs/plugin-text@^0.0.2"
     }
+  },
+  "dependencies": {
+    "gulp": "~3.8.11"
   }
 }
