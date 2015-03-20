@@ -1,10 +1,6 @@
-import tpl from './core.tpl.html!text';
-import headerTpl from './header.tpl.html!text';
-import footerTpl from './footer.tpl.html!text';
-
+import coreTpl from './core.tpl.html!text';
 
 import user from '../users/config';
-
 
 /**
  * @classdesc Abstract Router for full layout region
@@ -14,20 +10,9 @@ class LayoutRouterConfig {
 
     constructor($stateProvider) {
         $stateProvider
-            .state('view', {
+            .state('layout', {
                 abstract: true,
-                template : /*coreTpl*/ "<ui-view></ui-view>"
-            })
-            .state('view.layout', {
-                abstract: true,
-                views:{
-                    'footer' :{
-                        template : "<ui-view></ui-view>" /*footerTpl*/
-                    },
-                    'header' : {
-                        template : "<ui-view></ui-view>" /*headerTpl*/
-                    }
-                }
+                template : coreTpl
             });
     }
 
@@ -55,7 +40,7 @@ LayoutRouter.factory.$inject = [ '$rootScope', '$document' ];
 
 const name = 'layoutViewRouteModule';
 
-let m = angular.module(name, [ 'ui.router'/*, user.name*/ ])
+let m = angular.module(name, [ 'ui.router', user.name])
     .config(LayoutRouterConfig.factory)
     .run(LayoutRouter.factory);
 

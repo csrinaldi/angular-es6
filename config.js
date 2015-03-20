@@ -13,6 +13,8 @@ System.config({
     "angular": "github:angular/bower-angular@1.3.15",
     "angular-material": "github:angular/bower-material@0.8.3",
     "angular-ui/ui-router": "github:angular-ui/ui-router@0.2.13",
+    "font-awesome": "npm:font-awesome@4.2.0",
+    "github:mgonto/restangular": "github:mgonto/restangular@1.4.0",
     "jquery": "github:components/jquery@2.1.3",
     "text": "github:systemjs/plugin-text@0.0.2",
     "github:angular-ui/ui-router@0.2.13": {

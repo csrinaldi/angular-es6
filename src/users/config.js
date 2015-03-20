@@ -8,11 +8,12 @@ class UserRouterConfig {
      */
     constructor($stateProvider) {
         $stateProvider
-            .state('view.layout.users', {
-                abstract: true
+            .state('layout.users', {
+                abstract: true,
+                template : "<ui-view></ui-view>"
             })
-            .state('view.layout.users.login', {
-                url: '/',
+            .state('layout.users.login', {
+                url: '/login',
                 template: loginTpl
             })
     }
