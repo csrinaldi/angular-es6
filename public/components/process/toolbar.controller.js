@@ -1,16 +1,11 @@
 /**
  * Created by scit on 08/06/15.
  */
-import CoreController from '../../core/core';
+/*import CoreController from '../../core/core';
 
 export default (function () {
-  class ToolbarController /*extends CoreController*/ {
-    /**
-     * Constructor
-     * @param process
-     * @param $log
-     * @param $scope
-     */
+  class ToolbarController {
+
     constructor($scope, $rootScope) {
       super();
       let vm = this;
@@ -36,6 +31,6 @@ export default (function () {
   return ToolbarController;
 
 })();
-
+*/
 
 

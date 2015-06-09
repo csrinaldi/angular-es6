@@ -1,6 +1,9 @@
 /**
  * Controller and Services Class Imports
- */
+ *
+ *
+ *
+ *
 import _ToolbarController from './toolbar.controller';
 import _ProcessController from './controller';
 import _ProcessService from './service';
@@ -8,15 +11,9 @@ import _ExportController from './exports/controller';
 import _ContentController from './exports/content.controller';
 import _ExportService from './exports/service';
 
-/**
- * Process template Imports
- */
 import contentTPL from './views/content.template.html!text';
 import toolbarTPL from './views/toolbar.template.html!text';
 
-/**
- * Export Process template Imports
- */
 import exportListTPL from './exports/views/list.template.html!text';
 import exportContentTPL from './exports/views/content.template.html!text';
 
@@ -118,9 +115,6 @@ export default (function () {
       );
     }
 
-    /**
-     * @returns {UserRouteConfig|*|UserRouteConfig.instance}
-     */
     static factory($stateProvider) {
       Config.instance = new Config($stateProvider);
       return Config.instance;
@@ -136,9 +130,6 @@ export default (function () {
         });
     }
 
-    /**
-     * @returns {UserRouteConfig|*|UserRouteConfig.instance}
-     */
     static factory($rootScope) {
       Run.instance = new Config($rootScope);
       return Run.instance;
@@ -162,3 +153,4 @@ export default (function () {
     .run(Run.config);
 
 })();
+*/

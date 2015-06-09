@@ -1,13 +1,10 @@
+/*
 import CoreController from '../../core/core';
 
+
 export default (function () {
-  class ProcessController /*extends CoreController*/ {
-    /**
-     * Constructor
-     * @param process
-     * @param $log
-     * @param $scope
-     */
+  class ProcessController  {
+
     constructor(process, $log, $scope, $state) {
       super();
 
@@ -65,6 +62,6 @@ export default (function () {
   return ProcessController;
 
 })();
-
+*/
 
 

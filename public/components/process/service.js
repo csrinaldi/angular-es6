@@ -1,4 +1,4 @@
-export default (function () {
+/*export default (function () {
 
   class ProcessService {
     constructor($http, $log) {
@@ -22,4 +22,4 @@ export default (function () {
 
   return ProcessService;
 
-})();
+})();*/
