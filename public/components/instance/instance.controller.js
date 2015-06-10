@@ -1,35 +1,20 @@
-import SVGMorpheus from 'SVG-Morpheus';
-import CoreController from '../../../core/core';
-
 export default (function () {
 
-  class ExportController {
+  class _Controller{
 
-
-    constructor(distritos, layers, $scope) {
-      this.distritos = distritos;
-      this.layers = layers;
-      this.distritosFiltered = this.distritos;
-      this.layersFiltered = {};
-      this.selectedItem = {};
-      this.loading = false;
-      this.icons = [
+    constructor($scope, DistritoService) {
+      let vm = this;
+      vm.$service = DistritoService;
+      vm.distritos = [];
+      vm.distritosFiltered = [];
+      vm.layers = [];
+      vm.layersFiltered = [];
+      vm.selectedItem = {};
+      vm.loading = false;
+      vm.icons = [
         'layers', 'cloud_download', 'file_download'
       ];
-
-      let vm = this;
-      //Call some code when a state change starts
-      $scope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
-        vm.loading = true;
-      });
-
-      //Call some code when a state change finishes
-      $scope.$on("$stateChangeSuccess", function (event, toState, toParams, fromState, fromParams) {
-        vm.loading = false;
-      });
-
       vm.cnt = 0;
-
       setInterval(function () {
         vm.size = 28;
         vm.cnt++;
@@ -39,6 +24,16 @@ export default (function () {
         vm.fill = "#abcdef";
       }, 1700);
     }
+
+    canActivate(){
+      let vm = this;
+      vm.$service.findDistritos().then(function(data){
+        vm.distritos = data;
+        vm.distritosFiltered = vm.distritos;
+      });
+      return true;
+    }
+
 
     querySearch(query) {
       let vm = this;
@@ -107,6 +102,8 @@ export default (function () {
     }
 
   }
+
+  _Controller.$inject = ['$scope', 'DistritoService'];
 
   return ExportController;
 

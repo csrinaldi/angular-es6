@@ -4170,7 +4170,7 @@
   <!--link rel="stylesheet" href="public/assets/custom.css"-->
   <!-- endinject -->
 </head>
-<body data-main-app ng-cloak>
+<body data-main-app ng-cloak ng-controller="MainController">
 <!--[if lt IE 10]>
 <div class="u-padding-Am deprecation-warning">
   <h1>You are using an outdated browser.</h1>
@@ -4187,7 +4187,7 @@
   </div>
 </noscript>
 
-<div layout="row" flex layout-align="" ui-view></div>
+<div ng-include=" 'templateId.html' "></div>
 
 <!-- bower:js -->
 <!-- endinject -->

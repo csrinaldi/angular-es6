@@ -1,43 +1,35 @@
 export default (function () {
 
   class _Controller {
-    constructor($router, $location, authService, $mdUtil, $mdSidenav) {
-      this.authService = authService;
-      this.$mdUtil = $mdUtil;
-      this.$mdSidenav = $mdSidenav;
-      $location.path('/');
-      $router.config([{ path:'/' , components : {content : 'home'}}]);
+    constructor($router, $location) {
+      console.log("MainController");
       console.log($router);
+      console.log($location);
+
+      $location.path('/process');
+      $router.config([
+        { path:'/process',  component: 'process' },
+        { path:'/process/:id',  component : 'instance' }
+      ]);
     }
 
-    getView() {
-      return this.authService.isAuthenticated();
+    activate(){
+      console.log("Activating MainController");
     }
 
-    openSidenav() {
-      let vm = this;
-      vm.$mdSidenav('left')
-        .toggle()
-        .then(function () {
-
-        });
+    cantActivate(){
+      console.log("CanActivate");
+      return false;
     }
 
-    openSearch() {
-
-    }
-
-    static NAME() {
-      return "MainController";
+    canDeactivate(){
+      console.log("CanDeactivate");
     }
   }
 
-  /**
-   * Injection of Dependencies
-   * @type {string[]}
-   */
-  _Controller.$inject = [ '$router', 'AuthService', '$mdUtil', '$mdSidenav' ];
+  _Controller.$inject = [ '$router', '$location'];
 
   return _Controller;
 
 })();
+

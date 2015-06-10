@@ -1,6 +1,6 @@
-/*export default (function () {
+export default (function () {
 
-  class ProcessService {
+  class _Service {
     constructor($http, $log) {
       console.log("Instanciando el Servicio");
       this.$http = $http;
@@ -20,6 +20,6 @@
     }
   }
 
-  return ProcessService;
+  return _Service;
 
-})();*/
+})();

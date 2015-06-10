@@ -1,5 +1,5 @@
 export default (function () {
-  class ExportService {
+  class _Service {
     constructor($http, $log) {
       this.$http = $http;
       this.$log = $log;
@@ -38,8 +38,9 @@ export default (function () {
       });
       return p;
     }
-
   }
 
-  return ExportService
+  _Service.$inject = ['$http', '$log'];
+
+  return _Service
 })();

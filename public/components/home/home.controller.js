@@ -1,20 +1,30 @@
-import CoreController from '../../core/core';
-
 export default (function () {
-  class HomeController /*extends CoreController*/ {
+  class HomeController {
 
     constructor($router) {
-      $router.config([{ path:'/', component: 'home' }]);
+      this.$router = $router;
+
+      this.$router.config([
+        { path:'/home',
+            components: {
+                content : 'home'
+            }
+        }
+      ]);
+
+
+
     }
 
     activate(){
+
+      console.log(this.$router);
       console.log("Activating controller");
     }
 
-
-
-    static NAME() {
-      return "HomeController";
+    cantActivate(){
+      console.log("CanActivate");
+      return false;
     }
   }
 

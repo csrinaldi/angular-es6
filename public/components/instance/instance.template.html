@@ -1,4 +1,4 @@
-<section >
+<section>
   <div class="history-warning-holder">
     <md-card class="history-info-card history-info-warning md-g-blue-theme " style="background-color: rgb(246,246,246)">
       <md-card-content layout="row" layout-align="start center">
@@ -8,7 +8,7 @@
           <input class="history-search-box-input ng-pristine ng-valid ng-touched"
                  placeholder="Búsqueda" type="text" id="searchBox"
                  ng-model="lookupController.query"
-                 ng-keypress="($event.which === 13)?lookupController.search():0"
+                 ng-keypress="($event.which === 13)?instance.search():0"
                  flex=""
                  tabindex="0"
                  aria-invalid="false">
@@ -17,24 +17,21 @@
     </md-card>
 
     <md-list role="list" class="md-default-theme">
-      <md-list-item ng-click="vm.selectedItemChange($event, item)" class="md-whiteframe-z2 md-3-line"
-                    ng-repeat="item in vm.processFiltered | orderBy:'name'" style="margin-bottom: 10px;">
-        <ng-md-icon icon="schedule" style="fill: #abcdef" size="78"></ng-md-icon>
-        <!--ng-md-icon options='{"rotation": "counterclock"}' icon={{vm.icon}} style="fill: {{vm.fill}}" size=78></ng-md-icon-->
-        <object type="image/svg+xml" id="icon_{{item.distrito}}"></object>
+      <md-subheader class="md-no-sticky">Listado de Distritos</md-subheader>
+      <md-list-item md-ink-ripple class="md-whiteframe-z2 md-3-line" ng-repeat="item in instance.distritosFiltered | orderBy:'name'"
+                    style="margin-bottom: 10px;" ng-click="instance.selectDistrito(item)">
+        <ng-md-icon icon="cached" style="fill: #abcdef" size="78"></ng-md-icon>
+        <object type="image/svg+xml" id="icon_{{item.name}}"></object>
         <div class="md-list-item-text">
-          <h3 style="font-variant: small-caps">{{ item.name }}</h3>
-          <span style="font-size: 12px">{{item.desc}}</span>
+          <h3>Distrito: {{ item.name }}</h3>
+          <h4>{{ item.distrito }}</h4>
           <p></p>
         </div>
-        <ng-md-icon ng-click="vm.showProcess(item)" icon="send" style="fill:#abcdef" size="24"
-                    class="scit-icon-list"></ng-md-icon>
+        <md-progress-linear ng-show="instance.loading" md-mode="indeterminate"></md-progress-linear>
         <md-divider class="md-default-theme"></md-divider>
       </md-list-item>
-      <md-progress-linear ng-show="vm.loading" md-mode="indeterminate"></md-progress-linear>
-
-
     </md-list>
-
   </div>
 </section>
+
+
