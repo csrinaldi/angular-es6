@@ -2,9 +2,9 @@ export default (function () {
 
   class _Controller{
 
-    constructor($scope, DistritoService) {
+    constructor($router, $routeParams, $service) {
       let vm = this;
-      vm.$service = DistritoService;
+      vm.$service = $service;
       vm.distritos = [];
       vm.distritosFiltered = [];
       vm.layers = [];
@@ -15,27 +15,45 @@ export default (function () {
         'layers', 'cloud_download', 'file_download'
       ];
       vm.cnt = 0;
-      setInterval(function () {
+      /*setInterval(function () {
         vm.size = 28;
         vm.cnt++;
         if (vm.cnt >= vm.icons.length)
           vm.cnt = 0;
         vm.icon = vm.icons[ vm.cnt ];
         vm.fill = "#abcdef";
-      }, 1700);
+      }, 1700);*/
     }
 
-    canActivate(){
+    canDeactivate() {
+      console.log("Instsnce canDeactivate triggered");
+      return true;
+    };
+
+    deactivate() {
+      console.log("Instance deactivate triggered");
+    };
+
+    canActivate() {
+      console.log("Instance canActivate triggered");
       let vm = this;
       vm.$service.findDistritos().then(function(data){
         vm.distritos = data;
-        vm.distritosFiltered = vm.distritos;
+        vm.distritosFiltered = vm.distritos
+      }).catch(function(err){
+        console.log(err);
       });
       return true;
-    }
+    };
+
+    activate() {
+      console.log("Instance Activate triggered");
 
 
-    querySearch(query) {
+    };
+
+
+    /*querySearch(query) {
       let vm = this;
       return vm.distritos.filter(vm.createFilterFor(query));
     }
@@ -90,22 +108,17 @@ export default (function () {
       distrito.downloading = true;
       distrito.svgMorpheus = new SVGMorpheus('#icon_' + distrito.distrito);
       distrito.actual = 0;
-      /*distrito.timerInstance = function () {
-       console.log("llamando");
-       vm.onIconChange(distrito);
-       }*/
-
     }
 
     downloading(distrito) {
       return !(distrito.downloading === undefined || distrito.downloading === false);
-    }
+    }*/
 
   }
 
-  _Controller.$inject = ['$scope', 'DistritoService'];
+  _Controller.$inject = ['$router', '$routeParams', 'DistritoService'];
 
-  return ExportController;
+  return _Controller;
 
 })();
 

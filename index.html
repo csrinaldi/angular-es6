@@ -4187,14 +4187,97 @@
   </div>
 </noscript>
 
-<div ng-include=" 'templateId.html' "></div>
+<!--div ng-include=" 'templateId.html' "></div-->
+<div layout="row" flex layout-align="">
+  <md-sidenav class="md-whiteframe-z1
+                  md-sidenav-left md-closed
+                  md-locked-open"
+              layout="column"
+              md-component-id="sidenav"
+              md-is-locked-open="$mdMedia('min-width: 1460px')"
+              tabindex="-1">
+
+    <md-content flex="" layout="column" class="md-g-blue-theme">
+      <md-toolbar class="history-sidenav-toolbar md-g-blue-theme">
+        <div class="md-toolbar-tools history-sidenav-title">
+          <h2 style="color: #000000">
+            Scit
+          </h2>
+        </div>
+      </md-toolbar>
+      <div class="history-sidenav-divider"></div>
+      <div hide-gt-sm="">
+        <a class="history-sidenav-item"
+           href="https://accounts.google.com/SignOutOptions?continue=https://history.google.com/history/?authuser=$authuser">
+          csrinaldi@gmail.com <span class="history-account-picker-icon"></span> </a>
+
+        <div class="history-sidenav-divider"></div>
+      </div>
+      <a class="history-sidenav-item history-sidenav-item-selected" href="/history/">
+        Gestión de Procesos de Usuario
+      </a>
+
+      <div class="history-sidenav-divider" flex=""></div>
+      <a class="history-sidenav-item" href="https://myaccount.google.com/privacy#accounthistory"> Historial de la
+        cuenta </a></md-content>
+  </md-sidenav>
+
+  <div layout="column" flex>
+    <md-toolbar class="scit-toolbar md-g-blue-theme" scroll-shadow="main-content">
+      <div class="md-toolbar-tools">
+        <button class="md-icon-button history-sidenav-btn locked-sidenav-hide md-button md-g-blue-theme"
+                aria-label="Abrir el menú" ng-click="vm.openSidenav()" tabindex="0">
+          <img src="https://www.gstatic.com/images/icons/material/system/2x/menu_white_24dp.png" width="24">
+        </button>
+
+        <h2>
+          <!--img class="google-logo locked-sidenav-hide"
+                 src="//www.gstatic.com/history/static/images/logo_google_white_72dp.png" hide-sm="" width="72"-->
+          <span>Sigit - Sistema de Información Geográfica</span>
+        </h2>
+
+        <div flex=""></div>
+        <div class="history-toolbar-right">
+          <div class="inline-block">
+            <button class="md-icon-button md-button md-g-blue-theme" aria-label="Búsqueda"
+                    title="Búsqueda" ng-click="vm.openSearch()" tabindex="0"><img
+              src="https://www.gstatic.com/images/icons/material/system/2x/search_white_24dp.png" height="24"></button>
+          </div>
+          <popup-menu class="history-toolbar-right-popup-date" aria-label="Ir a la fecha"
+                      icon-src="https://www.gstatic.com/images/icons/material/system/2x/event_white_24dp.png"
+                      id="calendar">
+            <button class="md-icon-button md-button md-g-blue-theme" ng-click="vm.toggle()"
+                    aria-label="Ir a la fecha" title="Ir a la fecha" tabindex="0">
+              <img height="24" ng-src="https://www.gstatic.com/images/icons/material/system/2x/event_white_24dp.png"
+                   src="https://www.gstatic.com/images/icons/material/system/2x/event_white_24dp.png">
+            </button>
+          </popup-menu>
+          <popup-menu aria-label="Abrir el menú"
+                      icon-src="https://www.gstatic.com/images/icons/material/system/2x/more_vert_white_24dp.png"
+                      id="overflow">
+            <button class="md-icon-button md-button md-g-blue-theme" ng-click="controller.toggle()"
+                    aria-label="Abrir el menú" title="Abrir el menú" tabindex="0">
+              <img height="24" ng-src="https://www.gstatic.com/images/icons/material/system/2x/more_vert_white_24dp.png"
+                   src="https://www.gstatic.com/images/icons/material/system/2x/more_vert_white_24dp.png">
+            </button>
+          </popup-menu>
+        </div>
+      </div>
+    </md-toolbar>
+
+    <md-content class="main-column md-g-blue-theme" flex="" id="main-content">
+      <!--section ng-viewport="toolbar"/-->
+      <section ng-viewport="main"/>
+    </md-content>
+  </div>
+</div>
+
 
 <!-- bower:js -->
 <!-- endinject -->
 
 <!-- inject:js -->
 <!-- endinject -->
-
 <script src="jspm_packages/system.js"></script>
 <script src="config.js"></script>
 
@@ -4206,6 +4289,8 @@
     console.error.bind(console)
   );
 </script>
+
+
 
 <!-- twb:js -->
 <!-- endinject -->

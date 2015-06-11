@@ -40,7 +40,7 @@ System.config({
     "ol3": "github:openlayers/ol3@3.6.0",
     "plugin-json": "github:systemjs/plugin-json@0.1.0",
     "restangular": "github:mgonto/restangular@1.5.1",
-    "router": "github:angular/router@master",
+    "router": "github:angular/router@0.5.3",
     "text": "github:systemjs/plugin-text@0.0.2",
     "ui-router": "github:angular-ui/ui-router@0.2.15",
     "ui-select": "github:angular-ui/ui-select@0.11.2",

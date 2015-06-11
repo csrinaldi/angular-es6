@@ -2,5 +2,5 @@ import InstanceController from './instance.controller';
 
 export default (function () {
   return angular.module('InstanceModule', [])
-    .controller('InstanceController', ProcessController);
+    .controller('InstanceController', InstanceController);
 })();
