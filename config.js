@@ -30,6 +30,7 @@ System.config({
     "bootstrap": "github:twbs/bootstrap@3.3.4",
     "bootstrap-switch": "github:nostalgiaz/bootstrap-switch@3.3.2",
     "bootstrap-wizard": "public/assets/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min",
+    "cache-polyfill": "github:coonsta/cache-polyfill@master",
     "es6-promise": "npm:es6-promise@2.2.0",
     "font-awesome": "npm:font-awesome@4.2.0",
     "github:mgonto/restangular": "github:mgonto/restangular@1.4.0",

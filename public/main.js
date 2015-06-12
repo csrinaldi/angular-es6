@@ -1,4 +1,5 @@
 'use strict';
+import ServiceWorker from './share/service.worker.module';
 import CoreService from './services/service.module';
 import ProcessModule from './components/process/process.module';
 import InstanceModule from './components/instance/instance.module';
@@ -22,6 +23,7 @@ export default (function () {
       'restangular',
       'ngNewRouter',
       'ngMdIcons',
+      ServiceWorker.name,
       CoreService.name,
       ProcessModule.name,
       InstanceModule.name
@@ -43,10 +45,11 @@ export default (function () {
       }
     ])
     .run(
-    [ '$templateCache',
-      function ($templateCache) {
+    [ '$templateCache','ServiceWorkerService',
+      function ($templateCache,ServiceWorkerService) {
         //$templateCache.put('templateId.html', layoutTPL);
         console.log("Running APP with ES6 and Angular JS 1.4.0 with New Router!!!!!");
+        ServiceWorkerService.activate();
       }
     ]);
 })();
