@@ -12,11 +12,11 @@ export default (function () {
   return angular.module('App',
     [
       // ngTouch has to be BEFORE ngAria, else ng-clicks happen twice
-      'ngTouch',
-      'ngAnimate',
-      'ngAria',
-      'ngMessages',
-      'ngResource',
+      //'ngTouch',
+      //'ngAnimate',
+      //'ngAria',
+      //'ngMessages',
+      //'ngResource',
       'ngSanitize',
       'angular-jwt',
       'ngMaterial',
