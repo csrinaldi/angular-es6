@@ -8,7 +8,7 @@ export default (function () {
     findLayers() {
       let vm = this;
       let p = new Promise(function (resolve, reject) {
-        vm.$http.get('http://scit.santafe.gov.ar/scitMap/get_vir_layers.php')
+        vm.$http.get('https://scit.santafe.gov.ar/scitMap/get_vir_layers.php')
           .success(function (response) {
             console.log("Layers");
             console.log(response);
@@ -25,7 +25,7 @@ export default (function () {
     findDistritos() {
       let vm = this;
       let p = new Promise(function (resolve, reject) {
-        vm.$http.get('http://scit.santafe.gov.ar/scitMap/get_distritos.php')
+        vm.$http.get('https://scit.santafe.gov.ar/scitMap/get_distritos.php')
           .success(function (data) {
             console.log("Distritos");
             console.log(data);
