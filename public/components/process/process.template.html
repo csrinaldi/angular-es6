@@ -28,7 +28,7 @@
     </md-card>
 
     <md-list role="list" class="md-default-theme">
-      <md-list-item ng-click="process.goTo(item)" class="md-whiteframe-z2 md-3-line"
+      <md-list-item class="md-whiteframe-z2 md-3-line" ng-link="instance({id:item.name})"
                     ng-repeat="item in process.processFiltered | orderBy:'name'" style="margin-bottom: 10px;">
         <ng-md-icon icon="schedule" style="fill: #abcdef" size="78"></ng-md-icon>
         <div ng-click="process.goTo(item)" class="md-list-item-text">
@@ -37,7 +37,7 @@
 
           <p></p>
         </div>
-        <ng-md-icon ng-link="instance({id:item.name})" icon="send" style="fill:#abcdef" size="24"
+        <ng-md-icon ng-click="process.goTo(item)"icon="send" style="fill:#abcdef" size="24"
                     class="scit-icon-list">
 
         </ng-md-icon>

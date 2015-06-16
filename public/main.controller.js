@@ -6,6 +6,7 @@ export default (function () {
       console.log($router);
       console.log($location);
       this.workerService = ServiceWorkerService;
+      this.$router = $router;
 
       $location.path('/');
       $router.config([
@@ -46,6 +47,10 @@ export default (function () {
       let vm = this;
       console.log("OnNotification");
       vm.workerService.subscribe();
+    }
+
+    goToProcess(){
+      this.$router.navigate("/process");
     }
   }
 

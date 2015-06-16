@@ -9,7 +9,7 @@ export default (function () {
    */
   class ServiceWorkerService {
 
-    constructor($window,$rootScope,$http) {
+    constructor($window, $rootScope, $http) {
       this.navigator = $window.navigator;
       this.$rootScope = $rootScope;
       this.$http = $http;
@@ -18,34 +18,43 @@ export default (function () {
     subscribe() {
       console.log("ServiceWorkerService.subscribe");
       let vm = this;
-      vm.navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+      vm.navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
         serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true})
-          .then(function(subscription) {
+          .then(function (subscription) {
 
             // TODO: Send the subscription subscription.endpoint
             // to your server and save it to send a push message
             // at a later date
-            console.log(subscription);
+
+
+            console.log("------------------------------------------------------------------------------------------");
 
             return vm.$http(
               {
                 url: 'http://localhost:3000/api/notifications',
+                //url: 'http://localhost/rest/app_dev.php/notificaciones',
                 method: "POST",
-                data : {
-                  subscription : subscription
+                data: {
+                  subscription: subscription
                 },
                 withCredentials: false,
                 headers: {
-                  'scit-token': 'a833f5cac52c2cc5401ff2f73dd7203143e2f65b',
-                  'Content-Type': 'application/json; charset=utf-8'
+                  'scit-token': 'a833f5cac52c2cc5401ff2f73dd7203143e2f65b'
                 }
+              }
+            ).success(function () {
+                console.log("Notification add to server")
+              }
+            ).error(function (err) {
+                console.log("Notification error");
+                console.log(err);
               }
             );
 
 
             return true; //sendSubscriptionToServer(subscription);
           })
-          .catch(function(e) {
+          .catch(function (e) {
             console.log(e);
             if (Notification.permission === 'denied') {
               // The user denied the notification permission which
@@ -66,7 +75,7 @@ export default (function () {
       });
     }
 
-    initialiseState(){
+    initialiseState() {
       let vm = this;
 
       if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
@@ -85,61 +94,60 @@ export default (function () {
       }
 
       vm.navigator.serviceWorker.ready.then(
+        function (serviceWorkerRegistration) {
+          // Do we already have a push message subscription?
+          serviceWorkerRegistration.pushManager.getSubscription()
+            .then(function (subscription) {
 
-        function(serviceWorkerRegistration) {
-        // Do we already have a push message subscription?
-        serviceWorkerRegistration.pushManager.getSubscription()
-          .then(function(subscription) {
-
-            console.log(subscription);
-
-
-            if (!subscription) {
-              // We aren't subscribed to push, so set UI
-              // to allow the user to enable push
-              return;
-            }
+              console.log(subscription);
 
 
-            console.log(subscription);
-
-            vm.$rootScope.notifications = true;
-
-            // Enable any UI which subscribes / unsubscribes from
-            // push messages.
-
-            /*var pushButton = document.querySelector('.js-push-button');
-            pushButton.disabled = false;
-
-            if (!subscription) {
-              // We aren't subscribed to push, so set UI
-              // to allow the user to enable push
-              return;
-            }
-
-            // Keep your server in sync with the latest subscriptionId
-            sendSubscriptionToServer(subscription);
-
-            // Set your UI to show they have subscribed for
-            // push messages
-            pushButton.textContent = 'Disable Push Messages';
-            isPushEnabled = true;*/
+              if (!subscription) {
+                // We aren't subscribed to push, so set UI
+                // to allow the user to enable push
+                return;
+              }
 
 
-            console.log(subscription);
+              console.log(subscription);
 
-          })
-          .catch(function(err) {
-            console.warn('Error during getSubscription()', err);
-          });
-      });
+              vm.$rootScope.notifications = true;
+
+              // Enable any UI which subscribes / unsubscribes from
+              // push messages.
+
+              /*var pushButton = document.querySelector('.js-push-button');
+               pushButton.disabled = false;
+
+               if (!subscription) {
+               // We aren't subscribed to push, so set UI
+               // to allow the user to enable push
+               return;
+               }
+
+               // Keep your server in sync with the latest subscriptionId
+               sendSubscriptionToServer(subscription);
+
+               // Set your UI to show they have subscribed for
+               // push messages
+               pushButton.textContent = 'Disable Push Messages';
+               isPushEnabled = true;*/
+
+
+              console.log(subscription);
+
+            })
+            .catch(function (err) {
+              console.warn('Error during getSubscription()', err);
+            });
+        });
 
     }
 
-    activate(){
+    activate() {
       let vm = this;
       if ('serviceWorker' in vm.navigator) {
-        vm.navigator.serviceWorker.register('/worker.js', {scope : '/'}).then(function (registration) {
+        vm.navigator.serviceWorker.register('/worker.js', {scope: '/'}).then(function (registration) {
           // Registration was successful
           vm.initialiseState();
           console.log('ServiceWorker registration successful with scope: ', registration.scope);

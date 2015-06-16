@@ -35,6 +35,10 @@ export default (function () {
           .accentPalette('orange');
         */
 
+
+        $httpProvider.defaults.withCredentials = true;
+        delete $httpProvider.defaults.headers.common["X-Requested-With"];
+
         $componentLoaderProvider.setTemplateMapping(function (name) {
           return 'public/components/' + name + '/' + name + '.template.html';
         });
