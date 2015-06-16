@@ -1,1 +1,0 @@
-module.exports = require("github:l-lin/angular-datatables@0.4.3/dist/angular-datatables");

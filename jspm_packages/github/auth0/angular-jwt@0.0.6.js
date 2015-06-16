@@ -1,1 +1,0 @@
-module.exports = require("github:auth0/angular-jwt@0.0.6/dist/angular-jwt");

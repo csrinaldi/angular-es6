@@ -1,1 +1,0 @@
-module.exports = require("github:frapontillo/angular-bootstrap-switch@0.3.0/dist/angular-bootstrap-switch");

@@ -1,1 +1,0 @@
-module.exports = require("npm:angular-material-icons@0.4.0/angular-material-icons.min");
