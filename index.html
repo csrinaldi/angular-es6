@@ -7,6 +7,9 @@
   <meta charset="utf-8">
   <title>Scit - Preview</title>
   <base href="/">
+
+  <link rel="manifest" href="manifest.json">
+
   <!-- bower:css -->
   <!-- endinject -->
 
@@ -4261,7 +4264,7 @@
                    src="https://www.gstatic.com/images/icons/material/system/2x/more_vert_white_24dp.png">
             </button>
           </popup-menu>
-          <md-switch ng-model="notifications" aria-label="Notificaciones" class="md-warn" ng-click="vm.onNotification()">
+          <md-switch ng-model="vm.notifications" aria-label="Notificaciones" class="md-warn" ng-click="vm.onNotification()">
             Notificaciones
           </md-switch>
         </div>

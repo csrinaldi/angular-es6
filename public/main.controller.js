@@ -43,7 +43,9 @@ export default (function () {
     }
 
     onNotification(){
-      this.workerService.subscribe();
+      let vm = this;
+      console.log("OnNotification");
+      vm.workerService.subscribe();
     }
   }
 

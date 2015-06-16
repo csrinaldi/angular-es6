@@ -3,33 +3,50 @@
  */
 export default (function () {
 
+
+  /**
+   * TODO cambiar el rootScope por algun evento que se dispare
+   */
   class ServiceWorkerService {
 
-    constructor($window,$rootScope) {
+    constructor($window,$rootScope,$http) {
       this.navigator = $window.navigator;
       this.$rootScope = $rootScope;
+      this.$http = $http;
     }
 
     subscribe() {
-      let vm = this;|
+      console.log("ServiceWorkerService.subscribe");
+      let vm = this;
       vm.navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
         serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true})
           .then(function(subscription) {
-            // The subscription was successful
-            //isPushEnabled = true;
-            //pushButton.textContent = 'Disable Push Messages';
-            //pushButton.disabled = false;
 
             // TODO: Send the subscription subscription.endpoint
             // to your server and save it to send a push message
             // at a later date
-
             console.log(subscription);
+
+            return vm.$http(
+              {
+                url: 'http://localhost/rest/app_dev.php/notification',
+                method: "POST",
+                data : {
+                  subscription : subscription
+                },
+                withCredentials: true,
+                headers: {
+                  'scit-token': 'a833f5cac52c2cc5401ff2f73dd7203143e2f65b',
+                  'Content-Type': 'application/json; charset=utf-8'
+                }
+              }
+            );
 
 
             return true; //sendSubscriptionToServer(subscription);
           })
           .catch(function(e) {
+            console.log(e);
             if (Notification.permission === 'denied') {
               // The user denied the notification permission which
               // means we failed to subscribe and the user will need
