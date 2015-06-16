@@ -52,9 +52,28 @@ export default (function () {
     };
 
     goTo(process) {
-      this.$http.get('http://localhost:3000/api/hello').success(function(){
-        console.log("HOLA");
-      });
+      event.stopPropagation();
+      let vm = this;
+      vm.$http(
+        {
+          url: 'http://localhost:3000/api/hello',
+          //url: 'http://localhost/rest/app_dev.php/hello',
+          method: "GET",
+          withCredentials: false,
+          headers: {
+            'scit-token': 'a833f5cac52c2cc5401ff2f73dd7203143e2f65b',
+            'Content-Type': 'application/json; charset=utf-8'
+          }
+        }
+      ).success(function (data) {
+          console.log(data);
+        }
+      ).error(function (err) {
+          console.log("Notification error");
+          console.log(err);
+        }
+      );
+
       //this.$router.parent.navigate("/process/"+process.id);
     }
 
