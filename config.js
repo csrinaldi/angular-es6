@@ -18,7 +18,6 @@ System.config({
     "angular-material": "github:angular/bower-material@master",
     "angular-material-icons": "npm:angular-material-icons@0.4.0",
     "angular-messages": "github:angular/bower-angular-messages@1.4.0",
-    "angular-touch": "github:angular/bower-angular-touch@1.4.0",
     "angular-underscore-module": "github:andresesfm/angular-underscore-module@1.0.1",
     "cache-polyfill": "github:coonsta/cache-polyfill@master",
     "es6-promise": "npm:es6-promise@2.3.0",
@@ -42,9 +41,6 @@ System.config({
       "angular": "github:angular/bower-angular@1.4.0"
     },
     "github:angular/bower-angular-aria@1.4.0": {
-      "angular": "github:angular/bower-angular@1.4.0"
-    },
-    "github:angular/bower-angular-touch@1.4.0": {
       "angular": "github:angular/bower-angular@1.4.0"
     },
     "github:angular/bower-material@master": {

@@ -47,7 +47,7 @@ var subscription = {};
 
 app.get('/api/hello', function (req, res) {
 
-  var sender = new gcm.Sender("AIzaSyAuudeSWLLAKVCd8ZRQmYZo0A1_Rc9vlMQ", {
+  var sender = new gcm.Sender("518027374081", {
     'proxy':'http://10.1.30.219:3128'
   });
 
