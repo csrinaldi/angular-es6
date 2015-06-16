@@ -1,0 +1,1 @@
+module.exports = require("github:mgonto/restangular@1.4.0/restangular");

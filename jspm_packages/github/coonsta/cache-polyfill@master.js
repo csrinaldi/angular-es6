@@ -1,0 +1,1 @@
+module.exports = require("github:coonsta/cache-polyfill@master/index");
