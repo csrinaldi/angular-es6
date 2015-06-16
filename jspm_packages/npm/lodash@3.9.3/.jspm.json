@@ -88,12 +88,11 @@
     "shasum": "0159e86832feffc6d61d852b12a953b99496bd32",
     "tarball": "http://registry.npmjs.org/lodash/-/lodash-3.9.3.tgz"
   },
-  "jspm": {},
-  "registry": "npm",
   "format": "cjs",
   "ignore": [
     "node_modules"
   ],
+  "registry": "npm",
   "dependencies": {
     "process": "github:jspm/nodelibs-process@^0.1.0"
   }

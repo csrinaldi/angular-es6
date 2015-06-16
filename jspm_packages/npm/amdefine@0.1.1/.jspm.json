@@ -40,12 +40,11 @@
     "shasum": "b5c75c532052dccd6a39c0064c772c8d57a06cd2",
     "tarball": "http://registry.npmjs.org/amdefine/-/amdefine-0.1.1.tgz"
   },
-  "jspm": {},
-  "registry": "npm",
   "format": "cjs",
   "ignore": [
     "node_modules"
   ],
+  "registry": "npm",
   "dependencies": {
     "path": "github:jspm/nodelibs-path@^0.1.0",
     "process": "github:jspm/nodelibs-process@^0.1.0",

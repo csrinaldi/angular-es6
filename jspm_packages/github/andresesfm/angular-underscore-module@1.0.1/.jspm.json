@@ -1,4 +1,4 @@
 {
-  "jspm": {},
+  "registry": "github",
   "main": "./angular-underscore-module.js"
 }

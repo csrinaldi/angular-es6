@@ -38,7 +38,6 @@
   "scripts": {
     "test": "grunt test"
   },
-  "jspm": {},
-  "main": "dist/angular-datatables.js",
-  "dependencies": {}
+  "registry": "github",
+  "main": "dist/angular-datatables.js"
 }

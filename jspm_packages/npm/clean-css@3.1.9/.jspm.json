@@ -69,12 +69,11 @@
     "shasum": "dbd05a148be4943bb37ce0679e676cbc9f580266",
     "tarball": "http://registry.npmjs.org/clean-css/-/clean-css-3.1.9.tgz"
   },
-  "jspm": {},
-  "registry": "npm",
   "format": "cjs",
   "ignore": [
     "node_modules"
   ],
+  "registry": "npm",
   "dependencies": {
     "commander": "commander@~2.6.0",
     "source-map": "source-map@~0.1.43",

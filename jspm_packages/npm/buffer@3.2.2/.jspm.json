@@ -108,8 +108,8 @@
     "bin",
     "node_modules"
   ],
-  "registry": "npm",
   "format": "cjs",
+  "registry": "npm",
   "dependencies": {
     "base64-js": "base64-js@0.0.8",
     "ieee754": "ieee754@^1.1.4",

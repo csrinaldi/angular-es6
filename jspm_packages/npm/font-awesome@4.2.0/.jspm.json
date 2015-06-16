@@ -70,11 +70,10 @@
     "shasum": "47338a1a017da6bef95ce2e1b0e176828fd8adea",
     "tarball": "http://registry.npmjs.org/font-awesome/-/font-awesome-4.2.0.tgz"
   },
-  "jspm": {},
-  "registry": "npm",
   "format": "cjs",
   "ignore": [
     "node_modules"
   ],
+  "registry": "npm",
   "dependencies": {}
 }

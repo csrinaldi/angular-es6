@@ -29,12 +29,12 @@ export default (function () {
 
             return vm.$http(
               {
-                url: 'http://localhost/rest/app_dev.php/notification',
+                url: 'http://localhost:3000/api/notifications',
                 method: "POST",
                 data : {
                   subscription : subscription
                 },
-                withCredentials: true,
+                withCredentials: false,
                 headers: {
                   'scit-token': 'a833f5cac52c2cc5401ff2f73dd7203143e2f65b',
                   'Content-Type': 'application/json; charset=utf-8'

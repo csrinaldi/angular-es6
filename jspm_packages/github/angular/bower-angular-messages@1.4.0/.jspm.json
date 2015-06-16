@@ -22,5 +22,5 @@
     "url": "https://github.com/angular/angular.js/issues"
   },
   "homepage": "http://angularjs.org",
-  "jspm": {}
+  "registry": "github"
 }

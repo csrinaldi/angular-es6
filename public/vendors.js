@@ -5,16 +5,10 @@
 import 'jquery';
 import 'lodash';
 import _ from "underscore";
-import 'bootstrap';
 import 'angular';
 import 'router';
-import 'angular-animate';
 import 'angular-messages';
 import 'angular-touch';
-import 'angular-aria';
-import 'angular-resource';
-import 'angular-sanitize';
-import 'angular-bootstrap';
 import 'angular-jwt';
 import 'restangular';
 import 'angular-material';

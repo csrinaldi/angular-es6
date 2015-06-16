@@ -58,11 +58,10 @@
     "shasum": "75849dcfe93d10fb057c30055afdbd51d06a8e24",
     "tarball": "http://registry.npmjs.org/events/-/events-1.0.2.tgz"
   },
-  "jspm": {},
-  "registry": "npm",
   "format": "cjs",
   "ignore": [
     "node_modules"
   ],
+  "registry": "npm",
   "dependencies": {}
 }

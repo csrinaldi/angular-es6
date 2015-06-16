@@ -1,1 +1,0 @@
-module.exports = require("github:angular-ui/ui-select@0.11.2/dist/select");

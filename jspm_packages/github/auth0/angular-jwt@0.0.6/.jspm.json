@@ -31,7 +31,6 @@
   "engines": {
     "node": ">=0.8.0"
   },
-  "jspm": {},
-  "main": "dist/angular-jwt.js",
-  "dependencies": {}
+  "registry": "github",
+  "main": "dist/angular-jwt.js"
 }

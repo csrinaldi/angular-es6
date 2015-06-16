@@ -1,20 +1,16 @@
 System.config({
-  "baseURL": "./",
+  "defaultJSExtensions": true,
+  "transpiler": "traceur",
   "paths": {
-    "*": "*.js",
-    "semmep/*": "public/*.js",
-    "github:*": "jspm_packages/github/*.js",
-    "npm:*": "jspm_packages/npm/*.js"
+    "github:*": "jspm_packages/github/*",
+    "npm:*": "jspm_packages/npm/*"
   }
 });
 
 System.config({
   "map": {
-    "DataTables": "github:DataTables/DataTables@1.10.7",
     "SVG-Morpheus": "github:alexk111/SVG-Morpheus@0.1.8",
-    "angular": "github:angular/bower-angular@1.4.0",
-    "angular-animate": "github:angular/bower-angular-animate@1.4.0",
-    "angular-aria": "github:angular/bower-angular-aria@1.4.0",
+    "angular": "npm:angular@1.4.0",
     "angular-bootstrap": "github:angular-ui/bootstrap-bower@0.12.1",
     "angular-bootstrap-switch": "github:frapontillo/angular-bootstrap-switch@0.3.0",
     "angular-datatables": "github:l-lin/angular-datatables@0.4.3",
@@ -22,47 +18,30 @@ System.config({
     "angular-material": "github:angular/bower-material@master",
     "angular-material-icons": "npm:angular-material-icons@0.4.0",
     "angular-messages": "github:angular/bower-angular-messages@1.4.0",
-    "angular-resource": "github:angular/bower-angular-resource@1.4.0",
-    "angular-sanitize": "github:angular/bower-angular-sanitize@1.4.0",
     "angular-touch": "github:angular/bower-angular-touch@1.4.0",
-    "angular-ui/ui-router": "github:angular-ui/ui-router@0.2.15",
     "angular-underscore-module": "github:andresesfm/angular-underscore-module@1.0.1",
-    "bootstrap": "github:twbs/bootstrap@3.3.4",
-    "bootstrap-switch": "github:nostalgiaz/bootstrap-switch@3.3.2",
-    "bootstrap-wizard": "public/assets/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min",
     "cache-polyfill": "github:coonsta/cache-polyfill@master",
-    "es6-promise": "npm:es6-promise@2.2.0",
+    "es6-promise": "npm:es6-promise@2.3.0",
     "font-awesome": "npm:font-awesome@4.2.0",
     "github:mgonto/restangular": "github:mgonto/restangular@1.4.0",
     "jquery": "github:components/jquery@2.1.4",
     "jquery-ui": "github:components/jqueryui@1.11.4",
     "lodash": "github:lodash/lodash@3.9.3",
-    "ol": "npm:openlayers@3.5.0",
     "ol3": "github:openlayers/ol3@3.6.0",
     "plugin-json": "github:systemjs/plugin-json@0.1.0",
     "restangular": "github:mgonto/restangular@1.5.1",
     "router": "github:angular/router@0.5.3",
     "text": "github:systemjs/plugin-text@0.0.2",
-    "ui-router": "github:angular-ui/ui-router@0.2.15",
-    "ui-select": "github:angular-ui/ui-select@0.11.2",
+    "traceur": "github:jmcriffey/bower-traceur@0.0.89",
+    "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.89",
     "underscore": "npm:underscore@1.8.3",
-    "github:DataTables/DataTables@1.10.7": {
-      "css": "github:systemjs/plugin-css@0.1.12",
-      "jquery": "github:components/jquery@2.1.4"
-    },
     "github:angular-ui/bootstrap-bower@0.12.1": {
       "angular": "github:angular/bower-angular@1.2.28"
-    },
-    "github:angular-ui/ui-router@0.2.15": {
-      "angular": "github:angular/bower-angular@1.4.0"
     },
     "github:angular/bower-angular-animate@1.4.0": {
       "angular": "github:angular/bower-angular@1.4.0"
     },
     "github:angular/bower-angular-aria@1.4.0": {
-      "angular": "github:angular/bower-angular@1.4.0"
-    },
-    "github:angular/bower-angular-sanitize@1.4.0": {
       "angular": "github:angular/bower-angular@1.4.0"
     },
     "github:angular/bower-angular-touch@1.4.0": {
@@ -116,20 +95,17 @@ System.config({
       "util": "npm:util@0.10.3"
     },
     "github:mgonto/restangular@1.4.0": {
-      "angular": "github:angular/bower-angular@1.2.28",
+      "angular": "github:angular/bower-angular@1.4.0",
       "lodash": "npm:lodash@3.9.3"
     },
     "github:mgonto/restangular@1.5.1": {
-      "angular": "github:angular/bower-angular@1.2.28",
+      "angular": "github:angular/bower-angular@1.4.0",
       "lodash": "npm:lodash@3.9.3"
     },
     "github:systemjs/plugin-css@0.1.12": {
       "clean-css": "npm:clean-css@3.1.9",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0"
-    },
-    "github:twbs/bootstrap@3.3.4": {
-      "jquery": "github:components/jquery@2.1.4"
     },
     "npm:amdefine@0.1.1": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
@@ -143,12 +119,15 @@ System.config({
     "npm:angular@1.3.16": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
+    "npm:angular@1.4.0": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
     },
     "npm:buffer@3.2.2": {
       "base64-js": "npm:base64-js@0.0.8",
-      "ieee754": "npm:ieee754@1.1.5",
+      "ieee754": "npm:ieee754@1.1.6",
       "is-array": "npm:is-array@1.0.1"
     },
     "npm:clean-css@3.1.9": {
@@ -173,7 +152,7 @@ System.config({
     "npm:core-util-is@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
     },
-    "npm:es6-promise@2.2.0": {
+    "npm:es6-promise@2.3.0": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1",
       "util": "github:jspm/nodelibs-util@0.1.0"

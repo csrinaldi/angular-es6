@@ -37,7 +37,6 @@
   "scripts": {
     "test": "grunt test"
   },
-  "jspm": {},
-  "main": "./dist/angular-bootstrap-switch.js",
-  "dependencies": {}
+  "registry": "github",
+  "main": "./dist/angular-bootstrap-switch.js"
 }

@@ -32,7 +32,6 @@
     "opn": "^0.1.2",
     "tiny-lr": "0.0.7"
   },
-  "jspm": {},
-  "main": "compile/minified/svg-morpheus.js",
-  "dependencies": {}
+  "registry": "github",
+  "main": "compile/minified/svg-morpheus.js"
 }

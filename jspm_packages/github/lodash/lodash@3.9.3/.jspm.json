@@ -30,5 +30,5 @@
       "vendor"
     ]
   },
-  "jspm": {}
+  "registry": "github"
 }
