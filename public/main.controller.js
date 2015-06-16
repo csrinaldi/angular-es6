@@ -1,10 +1,11 @@
 export default (function () {
 
   class _Controller {
-    constructor($router, $location) {
+    constructor($router, $location, ServiceWorkerService) {
       console.log("MainController");
       console.log($router);
       console.log($location);
+      this.workerService = ServiceWorkerService;
 
       $location.path('/');
       $router.config([
@@ -40,9 +41,15 @@ export default (function () {
       console.log("CanDeactivate Main");
       return true;
     }
+
+    onNotification(){
+      let vm = this;
+      console.log("OnNotification");
+      vm.workerService.subscribe();
+    }
   }
 
-  _Controller.$inject = [ '$router', '$location' ];
+  _Controller.$inject = [ '$router', '$location' , 'ServiceWorkerService' ];
 
   return _Controller;
 

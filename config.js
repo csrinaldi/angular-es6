@@ -10,6 +10,7 @@ System.config({
 System.config({
   "map": {
     "SVG-Morpheus": "github:alexk111/SVG-Morpheus@0.1.8",
+    "angular": "npm:angular@1.4.0",
     "angular-bootstrap": "github:angular-ui/bootstrap-bower@0.12.1",
     "angular-bootstrap-switch": "github:frapontillo/angular-bootstrap-switch@0.3.0",
     "angular-datatables": "github:l-lin/angular-datatables@0.4.3",
@@ -17,14 +18,8 @@ System.config({
     "angular-material": "github:angular/bower-material@master",
     "angular-material-icons": "npm:angular-material-icons@0.4.0",
     "angular-messages": "github:angular/bower-angular-messages@1.4.0",
-    "angular-resource": "github:angular/bower-angular-resource@1.4.0",
-    "angular-sanitize": "github:angular/bower-angular-sanitize@1.4.0",
     "angular-touch": "github:angular/bower-angular-touch@1.4.0",
-    "angular-ui/ui-router": "github:angular-ui/ui-router@0.2.15",
     "angular-underscore-module": "github:andresesfm/angular-underscore-module@1.0.1",
-    "angular": "github:angular/bower-angular@1.4.0",
-    "bootstrap": "github:twbs/bootstrap@3.3.4",
-    "bootstrap-switch": "github:nostalgiaz/bootstrap-switch@3.3.2",
     "cache-polyfill": "github:coonsta/cache-polyfill@master",
     "es6-promise": "npm:es6-promise@2.3.0",
     "font-awesome": "npm:font-awesome@4.2.0",
@@ -39,22 +34,14 @@ System.config({
     "text": "github:systemjs/plugin-text@0.0.2",
     "traceur": "github:jmcriffey/bower-traceur@0.0.89",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.89",
-    "ui-router": "github:angular-ui/ui-router@0.2.15",
-    "ui-select": "github:angular-ui/ui-select@0.11.2",
     "underscore": "npm:underscore@1.8.3",
     "github:angular-ui/bootstrap-bower@0.12.1": {
       "angular": "github:angular/bower-angular@1.2.28"
-    },
-    "github:angular-ui/ui-router@0.2.15": {
-      "angular": "github:angular/bower-angular@1.4.0"
     },
     "github:angular/bower-angular-animate@1.4.0": {
       "angular": "github:angular/bower-angular@1.4.0"
     },
     "github:angular/bower-angular-aria@1.4.0": {
-      "angular": "github:angular/bower-angular@1.4.0"
-    },
-    "github:angular/bower-angular-sanitize@1.4.0": {
       "angular": "github:angular/bower-angular@1.4.0"
     },
     "github:angular/bower-angular-touch@1.4.0": {
@@ -120,9 +107,6 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0"
     },
-    "github:twbs/bootstrap@3.3.4": {
-      "jquery": "github:components/jquery@2.1.4"
-    },
     "npm:amdefine@0.1.1": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "module": "github:jspm/nodelibs-module@0.1.0",
@@ -133,6 +117,9 @@ System.config({
       "angular": "npm:angular@1.3.16"
     },
     "npm:angular@1.3.16": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:angular@1.4.0": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:assert@1.3.0": {

@@ -3,88 +3,147 @@
  */
 export default (function () {
 
+
+  /**
+   * TODO cambiar el rootScope por algun evento que se dispare
+   */
   class ServiceWorkerService {
 
-    constructor($window) {
+    constructor($window,$rootScope,$http) {
       this.navigator = $window.navigator;
-      this.serviceRegistrations = undefined;
+      this.$rootScope = $rootScope;
+      this.$http = $http;
     }
 
-    initPushNotification() {
+    subscribe() {
+      console.log("ServiceWorkerService.subscribe");
       let vm = this;
-      // Check if push messaging is supported
-      if (!('PushManager' in window)) {
-        console.log('Ooops Push Isn\'t Supported',
-          'If this isn\'t an expected error please get in touch with ' +
-          '<a href="https://twitter.com/gauntface">@gauntface</a> as the ' +
-          'demo is probably broken.');
-        return;
-      }
+      vm.navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+        serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true})
+          .then(function(subscription) {
 
-      // Is the Permissions API supported
-      if ('permissions' in navigator) {
-        vm.navigator.permissions.query({name: 'push', userVisibleOnly: true})
-          .then(function (permissionStatus) {
-            console.log(permissionStatus);
+            // TODO: Send the subscription subscription.endpoint
+            // to your server and save it to send a push message
+            // at a later date
+            console.log(subscription);
 
-            if (vm.serviceRegistration !== undefined) {
-              vm.serviceRegistration.pushManager.getSubscription()
-                .then(function (subscription) {
-                  if (!subscription) {
-                    // NOOP
-                    console.log('No subscription given');
-                    return;
-                  }
+            return vm.$http(
+              {
+                url: 'http://localhost:3000/api/notifications',
+                method: "POST",
+                data : {
+                  subscription : subscription
+                },
+                withCredentials: false,
+                headers: {
+                  'scit-token': 'a833f5cac52c2cc5401ff2f73dd7203143e2f65b',
+                  'Content-Type': 'application/json; charset=utf-8'
+                }
+              }
+            );
 
-                  // Set the initial state of the push switch
-                  //window.PushDemo.ui.setPushChecked(true);
 
-                  // Update the current state with the
-                  // subscriptionid and endpoint
-                  //onPushSubscription(subscription);
-                })
-                .catch(function (e) {
-                  console.log('An error occured while calling getSubscription()', e);
-                });
+            return true; //sendSubscriptionToServer(subscription);
+          })
+          .catch(function(e) {
+            console.log(e);
+            if (Notification.permission === 'denied') {
+              // The user denied the notification permission which
+              // means we failed to subscribe and the user will need
+              // to manually change the notification permission to
+              // subscribe to push messages
+              //window.Demo.debug.log('Permission for Notifications was denied');
+              //pushButton.disabled = true;
+            } else {
+              // A problem occurred with the subscription, this can
+              // often be down to an issue or lack of the gcm_sender_id
+              // and / or gcm_user_visible_only
+              //window.Demo.debug.log('Unable to subscribe to push.', e);
+              //pushButton.disabled = false;
+              //pushButton.textContent = 'Enable Push Messages';
             }
           });
-        return;
-      } else {
-        return;
-      }
-    }
-
-    waitUntilInstalled(registration) {
-      return new Promise(function(resolve, reject) {
-        if (registration.installing) {
-          // If the current registration represents the "installing" service worker, then wait
-          // until the installation step (during which the resources are pre-fetched) completes
-          // to display the file list.
-          registration.installing.addEventListener('statechange', function(e) {
-            if (e.target.state == 'installed') {
-              console.log(registration);
-              console.log('ServiceWorker registration successful with scope: ', registration.scope);
-              resolve();
-            } else if(e.target.state == 'redundant') {
-              reject();
-            }
-          });
-        } else {
-          // Otherwise, if this isn't the "installing" service worker, then installation must have been
-          // completed during a previous visit to this page, and the resources are already pre-fetched.
-          // So we can show the list of files right away.
-          resolve();
-        }
       });
     }
 
+    initialiseState(){
+      let vm = this;
 
-    activate() {
+      if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
+        console.warn('Notifications aren\'t supported.');
+        return;
+      }
+
+      if (Notification.permission === 'denied') {
+        console.warn('The user has blocked notifications.');
+        return;
+      }
+
+      if (!('PushManager' in window)) {
+        console.warn('Push messaging isn\'t supported.');
+        return;
+      }
+
+      vm.navigator.serviceWorker.ready.then(
+
+        function(serviceWorkerRegistration) {
+        // Do we already have a push message subscription?
+        serviceWorkerRegistration.pushManager.getSubscription()
+          .then(function(subscription) {
+
+            console.log(subscription);
+
+
+            if (!subscription) {
+              // We aren't subscribed to push, so set UI
+              // to allow the user to enable push
+              return;
+            }
+
+
+            console.log(subscription);
+
+            vm.$rootScope.notifications = true;
+
+            // Enable any UI which subscribes / unsubscribes from
+            // push messages.
+
+            /*var pushButton = document.querySelector('.js-push-button');
+            pushButton.disabled = false;
+
+            if (!subscription) {
+              // We aren't subscribed to push, so set UI
+              // to allow the user to enable push
+              return;
+            }
+
+            // Keep your server in sync with the latest subscriptionId
+            sendSubscriptionToServer(subscription);
+
+            // Set your UI to show they have subscribed for
+            // push messages
+            pushButton.textContent = 'Disable Push Messages';
+            isPushEnabled = true;*/
+
+
+            console.log(subscription);
+
+          })
+          .catch(function(err) {
+            console.warn('Error during getSubscription()', err);
+          });
+      });
+
+    }
+
+    activate(){
       let vm = this;
       if ('serviceWorker' in vm.navigator) {
-        vm.navigator.serviceWorker.register("public/share/service.worker.js", {scope: 'public/share/'})
-          .then(vm.waitUntilInstalled)
-          .catch(function (err) {
+        vm.navigator.serviceWorker.register('/worker.js', {scope : '/'}).then(function (registration) {
+          // Registration was successful
+          vm.initialiseState();
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }).catch(function (err) {
           // registration failed :(
           console.log('ServiceWorker registration failed: ', err);
         });

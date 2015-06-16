@@ -1,7 +1,7 @@
 export default (function () {
   class _Controller {
 
-    constructor($router, $location, $service) {
+    constructor($router, $location, $service, $http) {
       console.log("Process controller instantiated");
       console.log($router);
       console.log($service);
@@ -10,6 +10,7 @@ export default (function () {
 
       let vm = this;
       vm.process = [];
+      vm.$http = $http;
       vm.processFiltered = [];
       vm.$router = $router;
       vm.$service = $service;
@@ -51,7 +52,10 @@ export default (function () {
     };
 
     goTo(process) {
-      this.$router.parent.navigate("/process/"+process.id);
+      this.$http.get('http://localhost:3000/api/hello').success(function(){
+        console.log("HOLA");
+      });
+      //this.$router.parent.navigate("/process/"+process.id);
     }
 
     /*querySearch(query) {
@@ -74,7 +78,7 @@ export default (function () {
      }*/
   }
 
-  _Controller.$inject = [ '$router', '$location', 'ProcessService' ];
+  _Controller.$inject = [ '$router', '$location', 'ProcessService' , '$http'];
 
   return _Controller;
 
