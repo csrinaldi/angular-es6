@@ -1,9 +1,5 @@
 self.addEventListener('install', function (event) {
-  console.log("install");
-
-  /*event.waitUntil(
-   fetchStuffAndInitDatabases()
-   );*/
+  console.log(event);
 });
 
 self.addEventListener('activate', function (event) {
@@ -12,65 +8,62 @@ self.addEventListener('activate', function (event) {
 
 
 self.addEventListener('fetch', function (event) {
-
   console.log(event);
-
-  //event.respondWith(new Response("Hello world!"));
 });
 
+self.addEventListener('message', function (event) {
+  if (event.data.name === "RegisterEventSource") {
 
-self.addEventListener('push', function (event) {
-  console.log('Received a push message', event);
-  console.log(event);
+    var source = new EventSource('http://localhost/rest/app_dev.php/sse');
+    source.onopen = function (e) {
+      console.log("Open channel Sussess");
+      console.log(source);
+    };
 
-  var title = 'Notificacion';
-  var body = 'Hemos recibido una notificación';
-  var icon = '/images/icon-192x192.png';
-  var tag = 'simple-push-demo-notification-tag';
+    source.onerror = function (e) {
+      console.log(e);
+    };
 
-  event.waitUntil(
-    self.registration.showNotification(title, {
-      body: body,
-      icon: icon,
-      tag: tag
-    })
-  );
-});
+    source.onmessage = function (e) {
 
-self.addEventListener('notificationclick', function(event) {
-  console.log(event);
-  console.log('On notification click: ', event.notification.tag);
-  // Android doesn't close the notification when you click on it
-  // See: http://crbug.com/463146
-  event.notification.close();
+        self.registration.showNotification("Notificacion", {
+          body: "Esta es una Prueba",
+          icon: "/public/assets/img/icons/menu.svg",
+          tag: "process-tag",
+          data : {
+            process: {
+              status: 'OK'
+            }
+          }
+        });
 
-  // This looks to see if the current is already open and
-  // focuses if it is
-  event.waitUntil(
-    clients.matchAll({
-      type: "window"
-    })
-      .then(function(clientList) {
-
-        console.log(clientList);
-
-
-
-
-
-
-
-        /*for (var i = 0; i < clientList.length; i++) {
-          var client = clientList[i];
-          if (client.url == '/' && 'focus' in client)
-            return client.focus();
+      self.clients.matchAll().then(function(d) {
+        if ( d.length === 0 ){
+          console.log("Cliente conectados 0")
+        }else{
+          console.log(d);
         }
-        if (clients.openWindow) {
-          return clients.openWindow('/');
-        }*/
-      })
-  );
+      });
+
+      /*if (event.data !== undefined) {
+        console.log(e.data);
+        var data = JSON.parse(e.data);
+        if (data.uuid !== undefined) {
+          console.log("Haciendo broadcast");
+          event.ports[ 0 ].postMessage({
+            data: "Respuesta a " + e.data
+          });
+        }
+      }*/
+    };
+  }
+
+  console.log('Handling message event:', event.data);
+  event.ports[ 0 ].postMessage({
+    data: "Respuesta a " + event.data
+  });
 });
+
 
 
 
