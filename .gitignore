@@ -1,0 +1,8 @@
+jspm_packages
+node_modules
+dist
+.tmp
+.sass-cache
+.bowerrc
+app/bower_components
+.idea/
