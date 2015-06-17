@@ -1,13 +1,8 @@
 export default (function () {
+
   class _Controller {
 
-    constructor($router, $location, $service, $http) {
-      console.log("Process controller instantiated");
-      console.log($router);
-      console.log($service);
-      console.log("-------------------------------");
-
-
+    constructor($router, $location, $service, $http, ServiceWorkerService) {
       let vm = this;
       vm.process = [];
       vm.$http = $http;
@@ -20,6 +15,7 @@ export default (function () {
       ];
       vm.cnt = 0;
       vm.loading = false;
+      vm.$serviceWorker = ServiceWorkerService;
     }
 
     canDeactivate() {
@@ -54,6 +50,13 @@ export default (function () {
     goTo(process) {
       event.stopPropagation();
       let vm = this;
+      vm.$serviceWorker.sendMessage({name : "RegisterEventSource", path : "hhh"}).then(function(data){
+        console.log(data);
+      }).catch(function(err){
+        console.log(err);
+      });
+
+      /*let vm = this;
       vm.$http(
         {
           url: 'http://localhost:3000/api/hello',
@@ -72,7 +75,7 @@ export default (function () {
           console.log("Notification error");
           console.log(err);
         }
-      );
+      );*/
 
       //this.$router.parent.navigate("/process/"+process.id);
     }
@@ -97,7 +100,7 @@ export default (function () {
      }*/
   }
 
-  _Controller.$inject = [ '$router', '$location', 'ProcessService' , '$http'];
+  _Controller.$inject = [ '$router', '$location', 'ProcessService' , '$http', 'ServiceWorkerService'];
 
   return _Controller;
 

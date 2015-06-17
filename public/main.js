@@ -30,13 +30,13 @@ export default (function () {
       function ($httpProvider, jwtInterceptorProvider, RestangularProvider, $mdThemingProvider, $componentLoaderProvider) {
 
         /*$mdThemingProvider.theme('default')
-          .primaryPalette('light-blue')
-          .accentPalette('orange');
-        */
+         .primaryPalette('light-blue')
+         .accentPalette('orange');
+         */
 
 
         $httpProvider.defaults.withCredentials = true;
-        delete $httpProvider.defaults.headers.common["X-Requested-With"];
+        delete $httpProvider.defaults.headers.common[ "X-Requested-With" ];
 
         $componentLoaderProvider.setTemplateMapping(function (name) {
           return 'public/components/' + name + '/' + name + '.template.html';
@@ -44,8 +44,9 @@ export default (function () {
       }
     ])
     .run(
-    [ '$templateCache','ServiceWorkerService',
-      function ($templateCache,ServiceWorkerService) {
+    [ '$templateCache', 'ServiceWorkerService', '$rootScope',
+      function ($templateCache, ServiceWorkerService, $rootScope) {
+
         //$templateCache.put('templateId.html', layoutTPL);
         console.log("Running APP with ES6 and Angular JS 1.4.0 with New Router!!!!!");
         ServiceWorkerService.activate();
