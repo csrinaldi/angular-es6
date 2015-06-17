@@ -8,7 +8,6 @@ import _ from "underscore";
 import 'angular';
 import 'router';
 import 'angular-messages';
-import 'angular-touch';
 import 'angular-jwt';
 import 'restangular';
 import 'angular-material';

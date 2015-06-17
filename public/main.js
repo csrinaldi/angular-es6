@@ -12,7 +12,6 @@ export default (function () {
   return angular.module('App',
     [
       // ngTouch has to be BEFORE ngAria, else ng-clicks happen twice
-      'ngTouch',
       'ngMessages',
       'angular-jwt',
       'ngMaterial',
