@@ -47,7 +47,11 @@ var subscription = {};
 
 app.get('/api/hello', function (req, res) {
 
-  var sender = new gcm.Sender("AIzaSyCmxbldSgpq7nGkaBtUig__8TcwsQECkqk");
+  var sender = new gcm.Sender("AIzaSyCmxbldSgpq7nGkaBtUig__8TcwsQECkqk", {
+    'proxy':'http://10.1.30.219:3128'
+  });
+
+
   var message = new gcm.Message({
     collapseKey: 'demo',
     delayWhileIdle: true,
@@ -59,8 +63,11 @@ app.get('/api/hello', function (req, res) {
   });
 
   message.addData('key1','message1');
+  message.addData('key2','message2');
 
   var registrationIds = [subscription.subscriptionId];
+
+  console.log(registrationIds);
 
   sender.sendNoRetry(message, registrationIds, function(err, result) {
     if(err){
@@ -71,13 +78,20 @@ app.get('/api/hello', function (req, res) {
     else {
       console.log("Return OK");
       console.log(result);
-      console.log("---------");
       res.send();
     }
   });
 });
 
 app.post('/api/notifications', function (req, res) {
+  subscription = req.body.subscription;
+  console.log("Subscription is loaded");
+  console.log(subscription);
+  res.send();
+});
+
+
+app.get('/api/sse', function (req, res) {
   subscription = req.body.subscription;
   console.log("Subscription is loaded");
   console.log(subscription);
