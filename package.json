@@ -130,6 +130,9 @@
     "underscore.string": "~3.0.3",
     "cors": "~2.7.1",
     "node-gcm": "~0.9.15",
-    "jspm": "~0.16.0-beta"
+    "jspm": "~0.16.0-beta",
+    "sse": "0.0.6",
+    "node-uuid": "~1.4.3",
+    "express-cors": "0.0.3"
   }
 }

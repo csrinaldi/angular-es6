@@ -1,111 +1,86 @@
-/*var WebSocketServer = require('websocket').server;
- var http = require('http');
+// most basic dependencies
+var express = require('express')
+  , http = require('http')
+  , os = require('os')
+  , bodyParser = require('body-parser')
+  , cors = require('express-cors');
 
- var server = http.createServer(function(request, response) {
- // process HTTP request. Since we're writing just WebSockets server
- // we don't have to implement anything.
- });
- server.listen(1337, function() { });
-
- // create the server
- wsServer = new WebSocketServer({
- httpServer: server
- });
-
- // WebSocket server
- wsServer.on('request', function(request) {
- var connection = request.accept(null, request.origin);
-
- // This is the most important callback for us, we'll handle
- // all messages from users here.
- connection.on('message', function(message) {
- if (message.type === 'utf8') {
- console.log(message);
- }
- });
-
- connection.on('close', function(connection) {
- console.log("close WS");
- });
- });*/
-
-var cors = require('cors');
-var express = require('express');
-var bodyParser = require('body-parser');
-var gcm = require('node-gcm');
-
+// create the app
 var app = express();
-app.use(cors());
-app.use(bodyParser.urlencoded({
-    extended: true
-  })
-);
-app.use(bodyParser.json());
+app.use(bodyParser());
+app.use(cors({
+  allowedOrigins: [
+    'github.com', 'google.com', 'localhost:8000'
+  ]
+}));
 
 
-var subscription = {};
+//---------------------------------------
+// mini app
+//---------------------------------------
+var openConnections = [];
 
-app.get('/api/hello', function (req, res) {
+// simple route to register the clients
+app.get('/stats', function(req, res) {
 
-  var sender = new gcm.Sender("AIzaSyCmxbldSgpq7nGkaBtUig__8TcwsQECkqk", {
-    'proxy':'http://10.1.30.219:3128'
+  // set timeout as high as possible
+  req.socket.setTimeout(Infinity);
+
+  // send headers for event-stream connection
+  // see spec for more information
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive'
+  });
+  res.write('\n');
+
+  // push this res object to our global variable
+  openConnections.push(res);
+
+  // When the request is closed, e.g. the browser window
+  // is closed. We search through the open connections
+  // array and remove this connection.
+  req.on("close", function() {
+    var toRemove;
+    for (var j =0 ; j < openConnections.length ; j++) {
+      if (openConnections[j] == res) {
+        toRemove =j;
+        break;
+      }
+    }
+    openConnections.splice(j,1);
+    console.log(openConnections.length);
+  });
+});
+
+setInterval(function() {
+  // we walk through each connection
+  openConnections.forEach(function(resp) {
+    var d = new Date();
+    resp.write('id: ' + d.getMilliseconds() + '\n');
+    resp.write('data:' + createMsg() +   '\n\n'); // Note the extra newline
   });
 
+}, 1000);
 
-  var message = new gcm.Message({
-    collapseKey: 'demo',
-    delayWhileIdle: true,
-    timeToLive: 3,
-    data: {
-      key1: 'message1',
-      key2: 'message2'
-    }
-  });
+function createMsg() {
+  msg = {};
 
-  message.addData('key1','message1');
-  message.addData('key2','message2');
+  msg.hostname = os.hostname();
+  msg.type = os.type();
+  msg.platform = os.platform();
+  msg.arch = os.arch();
+  msg.release = os.release();
+  msg.uptime = os.uptime();
+  msg.loadaverage = os.loadavg();
+  msg.totalmem = os.totalmem();
+  msg.freemem = os.freemem();
 
-  var registrationIds = [subscription.subscriptionId];
+  return JSON.stringify(msg);
+}
 
-  console.log(registrationIds);
-
-  sender.sendNoRetry(message, registrationIds, function(err, result) {
-    if(err){
-      console.log("Return Error");
-      console.log(err);
-      res.status(400).json(err);
-    }
-    else {
-      console.log("Return OK");
-      console.log(result);
-      res.send();
-    }
-  });
-});
-
-app.post('/api/notifications', function (req, res) {
-  subscription = req.body.subscription;
-  console.log("Subscription is loaded");
-  console.log(subscription);
-  res.send();
-});
-
-
-app.get('/api/sse', function (req, res) {
-  subscription = req.body.subscription;
-  console.log("Subscription is loaded");
-  console.log(subscription);
-  res.send();
-});
-
-
-var server = app.listen(3000, function () {
-
-  var host = server.address().address;
-  var port = server.address().port;
-
-  console.log('Example app listening at http://%s:%s', host, port);
-
-});
-
-//curl --header "Authorization: key=AIzaSyBBh4ddPa96rQQNxqiq_qQj7sq1JdsNQUQ" --header Content-Type:"application/json" https://android.googleapis.com/gcm/send -d "{\"registration_ids\":[\"APA91bFRh8C_9EV34VxnBjK4PBq2ZaZxn02CUHq9SOGltz0J_2afGoXQDksKBV5Wv5fhzLwdnOKEpy-3YOXu-qcjz1nPXlx16Y6D0idLqNXJAUHeoJtQKlsuzR-CEQYhTGG-sr7FQyLf_Iy66NuniXhIbByzQps6frrgKPI3Z0Q5DEbsxEEvrP8\"]}"
+// startup everything
+http.createServer(app).listen(3000, function(){
+  console.log("Express server listening on port " + 3000);
+})

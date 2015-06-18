@@ -14,7 +14,7 @@ self.addEventListener('fetch', function (event) {
 self.addEventListener('message', function (event) {
   if (event.data.name === "RegisterEventSource") {
 
-    var source = new EventSource('http://localhost/rest/app_dev.php/sse');
+    var source = new EventSource('http://localhost:3000/stats');
     source.onopen = function (e) {
       console.log("Open channel Sussess");
       console.log(source);
